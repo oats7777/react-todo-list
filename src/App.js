@@ -44,15 +44,18 @@ const App = () => {
 	// ref를 사용하여 변수 담기
 	const nextId = useRef(4);
 
-	const onInsert = useCallback(text => {
-		const todo = {
-			id: nextId.current,
-			text,
-			checked: false,
-		};
-		setTodos(todos.concat(todo));
-		nextId.current += 1;
-	});
+	const onInsert = useCallback(
+		text => {
+			const todo = {
+				id: nextId.current,
+				text,
+				checked: false,
+			};
+			setTodos(todos.concat(todo));
+			nextId.current += 1;
+		},
+		[todos],
+	);
 	return (
 		<TodoTemplate>
 			<TodoInsert onInsert={onInsert} />
